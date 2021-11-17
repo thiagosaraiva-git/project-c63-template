@@ -10,7 +10,7 @@ export default class HomeScreen extends Component{
       text: '',
       isSearchPressed: false,
       isLoading: false,
-      word  : "Loading...",
+      word  : "Carregando...",
       lexicalCategory :'',
       definition : ""
     };
@@ -24,6 +24,9 @@ export default class HomeScreen extends Component{
     //url = "https://rupinwhitehatjr.github.io/dictionary/"+searchKeyword+".json"
     //url = "https://rupinwhitehatjr.github.io/dictionary/"+word+".json"
 
+    //API traduzida (contém 5 palavras: aplicativo, aprendizado, escola, linguagem e professora)
+    //url = "https://thiagosaraiva-git.github.io/dictionary-master/"+word+".json"
+    
     return fetch(url)
     .then((data)=>{
       if(data.status===200)
@@ -56,7 +59,7 @@ export default class HomeScreen extends Component{
         {
           this.setState({
             "word" : this.state.text, 
-            "definition" :"Not Found",
+            "definition" :"Não encontrado",
             
           })
 
@@ -83,34 +86,33 @@ export default class HomeScreen extends Component{
                 this.setState({
                   text: text,
                   isSearchPressed: false,
-                  word  : "Loading...",
+                  word  : "Carregando...",
                   lexicalCategory :'',
                   examples : [],
                   definition : ""
                 });
             }}
           />
-    
-      {/*   <input 
-            onChangeText={text => {
-                this.setState({
-                  text: text,
-                  isSearchPressed: false,
-                  word  : "Loading...",
-                  lexicalCategory :'',
-                  examples : [],
-                  definition : ""
-                });
-            }}
-          /> 
-          */}
+        {/*   <input 
+           onChangeText={text => {
+              this.setState({
+                text: text,
+                isSearchPressed: false,
+                word  : "Loading...",
+                lexicalCategory :'',
+                examples : [],
+                definition : ""
+              });
+           }}
+        /> 
+        */}
         {/*
         <TouchableOpacity 
             onChangeText={text => {
                 this.setState({
                   text: text,
                   isSearchPressed: false,
-                  word  : "Loading...",
+                  word  : "Carregando...",
                   lexicalCategory :'',
                   examples : [],
                   definition : ""
@@ -125,7 +127,7 @@ export default class HomeScreen extends Component{
                 this.setState({
                   text: text,
                   isSearchPressed: false,
-                  word  : "Loading...",
+                  word  : "Carregando...",
                   lexicalCategory :'',
                   examples : [],
                   definition : ""
@@ -133,7 +135,7 @@ export default class HomeScreen extends Component{
               }}
               value={this.state.text}
             />
-    ``````*/}
+            */}
             <TouchableOpacity
               style={styles.searchButton}
               onPress={() => {
@@ -146,18 +148,18 @@ export default class HomeScreen extends Component{
           <View style={styles.outputContainer}>
             <Text style={{fontSize:20}}>
               {
-                this.state.isSearchPressed && this.state.word === "Loading..."
+                this.state.isSearchPressed && this.state.word === "Carregando..."
                 ? this.state.word
                 : ""
               }
             </Text>
               {
-                this.state.word !== "Loading..." ?
+                this.state.word !== "Carregando..." ?
                 (
                   <View style={{justifyContent:'center', marginLeft:10 }}>
                     <View style={styles.detailsContainer}>
                       <Text style={styles.detailsTitle}>
-                        Word :{" "}
+                        Palavra :{" "}
                       </Text>
                       <Text style={{fontSize:18 }}>
                         {this.state.word}
@@ -165,7 +167,7 @@ export default class HomeScreen extends Component{
                     </View>
                     <View style={styles.detailsContainer}>
                       <Text style={styles.detailsTitle}>
-                        Type :{" "}
+                        Tipo :{" "}
                       </Text>
                       <Text style={{fontSize:18}}>
                         {this.state.lexicalCategory}
@@ -173,7 +175,7 @@ export default class HomeScreen extends Component{
                     </View>
                     <View style={{flexDirection:'row',flexWrap: 'wrap'}}>
                       <Text style={styles.detailsTitle}>
-                        Definition :{" "}
+                        Definição :{" "}
                       </Text>
                       <Text style={{ fontSize:18}}>
                         {this.state.definition}
